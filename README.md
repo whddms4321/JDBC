@@ -16,6 +16,7 @@ JDBC
 - **jdbc의 종류**   
 
   1. **dirvermanager**   
+  
      - 데이터 원본에 jdbc 드라이버를 통하여 커넥션을 만드는 역할
      - class,forname() 메소드를 통해 생성되며, 반드시 예외처리 해야함
      - 직접 객체 생성이 불가능하고,getconnection()메소드    
