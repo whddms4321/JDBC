@@ -28,18 +28,102 @@ public class MemberMgr {
 				break;
 			case 3 : nameSearch();
 				break;
-			case 0 : return;
+			case 4 : insertMember();
+				break;
+			case 5 : modifyMember();
+				break;
+			case 6 : deleteMember();
+				break;
+			case 0 : 
+				return;
 			}
 		}
 	
+	}
+	private void deleteMember() {
+		System.out.println("=====회원 삭제 프로그램======");
+		System.out.println("찾는 아이디 입력 :");
+		String memberId = sc.next();
+		Member m = new Member();
+		m.setMemberId(memberId);
+		DBConnect dc = new DBConnect();
+		int result =dc.deleteMember(m);		
+		if( result !=0) {
+			System.out.println("삭제 완료");
+		}else {
+			System.out.println("삭제 실패");
+		}
+		
+	}
+	private void modifyMember() {
+		System.out.println("====회원 정보 수정 프로그램========");
+		System.out.print("찾는 아이디 입력 : ");
+		String memberId = sc.next();
+		System.out.print("바꿀 비밀번호 입력 :  ");
+		String memberPw = sc.next();
+		System.out.print("바꿀 전화번호 입력(010-0000-0000)  : ");
+		String phone = sc.next();
+		System.out.print("바꿀 취미 입력 : ");
+		String hobby = sc.next();
+		Member m = new Member();
+		m.setMemberId(memberId);
+		m.setMemberPw(memberPw);
+		m.setPhone(phone);
+		m.setHobby(hobby);
+		DBConnect db = new DBConnect();
+		int result = db.modifyMember(m);
+		if(result !=0) {
+			System.out.println("수정 완료");
+			
+		}else {
+			System.out.println("수정 실패");
+		}
+		
+	}
+	
+	private void insertMember() {
+		DBConnect db =new DBConnect();
+		System.out.println("=======회원 정보 입력 프로그램=========");
+		System.out.println("아이디 입력 : ");
+		String memberId = sc.next();
+		Member member = db.idSearch(memberId);
+		if( member != null) {
+			System.out.println("이미 사용중인 아이디 입니다.");
+		}else {
+			System.out.print("패스워드 입력 : ");
+			String memberPw = sc.next();
+			System.out.print("이름 입력 : ");
+			String memberName = sc.next();
+			System.out.print("성별 입력 : ");
+			String gender = sc.next();
+			System.out.print("나이 입력 : ");
+			int age = sc.nextInt();
+			System.out.print("전화번호 입력(010-0000-0000) : ");
+			String phone = sc.next();
+			System.out.print("취미 입력 : ");
+			String hobby = sc.next();
+			Member m = new Member(memberId, memberPw, memberName, gender, age, phone, hobby, null);
+			DBConnect dc = new DBConnect();
+			int result	= dc.insertMember(m);
+			if (result !=0 ) {
+				System.out.println("회원가입완료");
+			}else {
+				System.out.println("회원가입 실패");
+			}
+		}
+		
+		
 	}
 	
 	private void printAll() {
 		DBConnect db = new DBConnect();
 		members = db.allPrint();
 		System.out.println("======테이블===========");
-		for(int i=0;i<members.size();i++) {
-			System.out.println(members.get(i));
+//		for(int i=0;i<members.size();i++) {
+//			System.out.println(members.get(i));
+//		}
+		for(Member m : members) {
+			System.out.println(m);
 		}
 		
 	}
