@@ -18,16 +18,16 @@ JDBC
   1. **dirvermanager**   
   
      - 데이터 원본에 jdbc 드라이버를 통하여 커넥션을 만드는 역할
-     - class,forname() 메소드를 통해 생성되며, 반드시 예외처리 해야함
+     - class.forname() 메소드를 통해 생성되며, 반드시 예외처리 해야함
      - 직접 객체 생성이 불가능하고,getconnection()메소드    
 
   2. **Connection**   
-     - 특정 데이터 원본과 연결된 커넥션
-     - Statement 객체를 생성할 때도 Connection 객체를 이용해야 함
+     - 특정 데이터 원본과 연결된 커넥션   
+     - Statement 객체를 생성할 때도 Connection 객체를 이용해야 함   
      - SQL 문장을 실행시키기 전 우선 Connection 객체를 필요    
 
   3. **Statement**    
-     - Cnnection 객체에 의해 프로그램에 리턴 되는 객체에 의해 구현되는 일종의 메소드 집합
+     - Cnnection 객체에 의해 프로그램에 리턴 되는 객체에 의해 구현되는 일종의 메소드 집합    쉽게 말해 connectino이 연결되는데 사용되는 매개체  
      - Connection 클래스의 createStatement() 메소드를 호출하여 객체 생성
      - Statement 객체로 SQL문을 String 객체에 담아 인자로 전달하여 질의를 수행    
 
@@ -63,7 +63,18 @@ JDBC
    4. 쿼리문 전송 및 결과 수신
    5. 결과 처리
    6. 자원 반환    
-      
+
+- **single ton(싱글톤) 패턴**  
+  - 싱글톤은 클래스에 대한 객체가 프로그램 구동 내내 한개만 작성되어 사용되게     하는 디자인 패턴을 의미한다.   
+  - 코드는 동일하며 프로그램 시작 후, 1번만 선언한 뒤 계속 불러다 사용.   
+  - 이때 만들어진 객체를 불러다 쓰기위해 **Static** 형태를 사용한다.
+  ```
+  public static Connection getConnection() {
+  }
+  ```   
+  - Connection 객체 생성, commit과 rollback 등을 위해 해당 패턴을 사용 한다.   
+  - Member m = new Member();선언과 다른 이유는 Member객체는 필요할 때마다    만들어 쓰는 반면 싱글톤 패턴은 하나를 선언하고 계속 불러사용하기 떄문이다.   
+
 - **MVC**    
    - model - 데이터 형태(vo -Member.java)
       - vo : value object
@@ -71,15 +82,18 @@ JDBC
    - View  - 사용자 화면
    - Controller - 데이터 처리    
      
-데이터 모델링 정의    
+- 데이터 모델링 정의    
 
   - 정보 구조의 실체와 관계를 중심으로 명확하고 체계적으로 표현하여 문서화 하는 기법
-    ERD 
+    ERD(entity+relation+diagmram) 
     
-논리 데이터 모델링에서 제 1정규화로 이뤄어지는 3가지     
+- 논리 데이터 모델링에서 제 1정규화로 이뤄어지는 3가지     
+
   1. 반복되는 속성이나 GROUP속성 제거
   2. 새로운 실체와 1:N의 관계가 이루어짐
   3. 모든 속성은 반드시 하나의 값을 가져야함(반복X)
   
-오라클 데이터타입과 길이   
+1. 반복되는 속성이나 group 속성 제거
+2. 새로운 사례와 1:n의 관계가 이루어짐
+3. 모든 속성은 반드시 하나의 값을 가져야함(반복x)
 
