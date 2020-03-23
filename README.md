@@ -59,7 +59,7 @@ JDBC
 
    1. 드라이버 등록
    2. Connection객체생성
-   3. Statement객체생성 - > 
+   3. Statement객체생성 - >preparedStatement 일때 위치홀더 사용으로     sql을 정의 캐쉬를 사용해서 연산속도 상승,보안성 높아짐 
    4. 쿼리문 전송 및 결과 수신
    5. 결과 처리
    6. 자원 반환    
@@ -67,7 +67,19 @@ JDBC
 - **MVC**    
    - model - 데이터 형태(vo -Member.java)
       - vo : value object
-      - dao : data access object	
-     View  - 사용자 화면
-     Controller - 데이터 처리    
+      - dao : data access object    	  
+   - View  - 사용자 화면
+   - Controller - 데이터 처리    
      
+데이터 모델링 정의    
+
+  - 정보 구조의 실체와 관계를 중심으로 명확하고 체계적으로 표현하여 문서화 하는 기법
+    ERD 
+    
+논리 데이터 모델링에서 제 1정규화로 이뤄어지는 3가지     
+  1. 반복되는 속성이나 GROUP속성 제거
+  2. 새로운 실체와 1:N의 관계가 이루어짐
+  3. 모든 속성은 반드시 하나의 값을 가져야함(반복X)
+  
+오라클 데이터타입과 길이   
+
