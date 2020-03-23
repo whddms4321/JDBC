@@ -107,7 +107,7 @@ public class MemberDao {
 			//4. 쿼리문 전송 및 결과 수신
 			rset = pstmt.executeQuery();
 			//5. 결과 처리
-			while(rset.next()) {
+			if(rset.next()) {
 				
 				m = new Member();
 				m.setMemberId(rset.getString("member_id"));
